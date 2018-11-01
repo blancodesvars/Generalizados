@@ -1,6 +1,6 @@
 ---
 title: "Modelo Lineal Generalizado ANOVA"
-author: "Alicia Giménez"
+author: "Martín Blanco, Alicia Giménez"
 date: "31 de octubre de 2018"
 output: pdf_document
 ---
