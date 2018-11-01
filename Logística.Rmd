@@ -18,3 +18,26 @@ knitr::opts_chunk$set(echo = TRUE)
 |M      |18-23  |40        |17           |8|65|
 |M      |24-40  |17        |15           |12|44|
 |M      |>40    |8        |15           |18|41|
+
+```{r, results='asis',caption= "1 denota No/Poco, 2 denota Importante y 3 denota Muy Importante", echo=FALSE}
+options(xtable.comment = FALSE)
+library(xtable)
+Nuevo <-data.frame("Sexo"=c("M","M","M","M","M","M","M","M","M","H","H","H","H","H","H","H","H","H"),"Edad"=c("18-23","18-23","18-23","24-40","24-40","24-40",">40",">40",">40","18-23","18-23","18-23","24-40","24-40","24-40",">40",">40",">40"),"Importancia"= c("1","2","3","1","2","3","1","2","3","1","2","3","1","2","3","1","2","3"),"Observaciones"= c(26,12,7,9,21,15,5,14,41,40,17,8,17,15,12,8,15,18))
+print.xtable(xtable(Nuevo))
+
+
+```
+
+
+```{r}
+test1 <-glm(Importancia ~ Sexo + Edad,weights = Observaciones, family=binomial(link = logit), data=Nuevo)
+test1
+summary(test1)
+coef(test1)
+fitted(test1)
+```
+En la salida anterior, lo primero que vemos es la llamada, esta es R, que nos recuerda qué modelo ejecutamos, qué opciones especificamos, etc.
+
+A continuación vemos los residuos de desviación, que son una medida del ajuste del modelo. Esta parte de la salida muestra la distribución de los residuos de desviación para los casos individuales utilizados en el modelo. A continuación, discutimos cómo usar los resúmenes de la estadística de desviación para evaluar el ajuste del modelo.
+
+La siguiente parte de la salida muestra los coeficientes, sus errores estándar, la estadística z (a veces denominada estadística z de Wald) y los valores p asociados. Ambos Sexo y los dos niveles de edad son estadísticamente significativos. Los coeficientes de regresión logística proporcionan el cambio en las probabilidades de registro del resultado para un aumento de una unidad en la variable predictiva.
