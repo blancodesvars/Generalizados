@@ -1,6 +1,6 @@
 ---
-title: "RegresiÛn LogÌstica Multinomial"
-author: "Martin Blanco, Alicia GimÈnez"
+title: "Regresi√≥n Log√≠stica Multinomial"
+author: "Martin Blanco, Alicia Gim√©nez"
 date: "1 de noviembre de 2018"
 output: pdf_document
 ---
@@ -9,46 +9,49 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-_Resumen: el presente trabajo presenta un esbozo de las caracterÌsticas del Modelo de RegresiÛn LogÌstica Multinomial la cual generaliza el MÈtodo de RegresiÛn LogÌstica para problemas multiclase, es decir con m·s de dos resultados posibles discretos, prediciendo las probabilidades de los diferentes resultados posibles de una distribuciÛn categÛrica como variables independientes. Adem·s de la presentaciÛn de definiciones y conceptos generales, se presenta un ejemplo de aplicaciÛn de la tÈcnica mediante el programa de procesamiento estadÌstico Rstudio, la redacciÛn del material se realizÛ con Rmarkdowm y para el desarrollo se utilizar·n los paquetes ._
+_Resumen: el presente trabajo presenta un esbozo de las caracter√≠sticas del Modelo de Regresi√≥n Log√≠stica Multinomial la cual generaliza el M√©todo de Regresi√≥n Log√≠stica para problemas multiclase, es decir con m√°s de dos resultados posibles discretos, prediciendo las probabilidades de los diferentes resultados posibles de una distribuci√≥n categ√≥rica como variables independientes. Adem√°s de la presentaci√≥n de definiciones y conceptos generales, se presenta un ejemplo de aplicaci√≥n de la t√©cnica mediante el programa de procesamiento estad√≠stico Rstudio, la redacci√≥n del material se realiz√≥ con Rmarkdowm y para el desarrollo se utilizaron los paquetes ._
 
-__Introduccion al Modelo de RegresiÛn LogÌstica Multinomial__
+__Introducci√≥n al Modelo de Regresi√≥n Log√≠stica Multinomial__
 
-El modelo de regresiÛn logÌstica multinomial o tambiÈn conocido como modelo con respuesta politÛmica, es una generalizaciÛn del modelo de regresiÛn logÌstico binomial (Mc Cullagh, 1989) en el que se desea estimar la probabilidad de que el individuo presente o no un evento especÌfico, dado un conjunto de variables que explican caracterÌsticas particulares de los individuos. En el caso del modelo multinomial, la variable endÛgena tiene m·s de dos alternativas a considerar como posibles respuestas, por lo cual la distribuciÛn de probabilidad adecuada para modelar este fenÛmeno es la distribuciÛn multinomial. 
+El modelo de regresi√≥n log√≠stica multinomial o tambi√©n conocido como modelo con respuesta polit√≥mica, es una generalizaci√≥n del modelo de regresi√≥n log√≠stico binomial (Mc Cullagh, 1989) en el que se desea estimar la probabilidad de que el individuo presente o no un evento espec√≠fico, dado un conjunto de variables que explican caracter√≠sticas particulares de los individuos. En el caso del modelo multinomial, la variable end√≥gena tiene m√°s de dos alternativas a considerar como posibles respuestas, por lo cual la distribuci√≥n de probabilidad adecuada para modelar este fen√≠meno es la distribuci√≥n multinomial. 
 
-Se debe tener en cuenta que la regresiÛn logÌstica multinomial difiere de la regresiÛn logÌstica condicional y ordinal, pues en la regresiÛn condicional las variables explicativas hacen referencia a atributos de las alternativas, variando sus valores para cada una de ellas, mientras que pueden o no variar para cada individuo, adem·s solo se estima un vector de par·metros, a diferencia de el caso multinomial en el que hay tantos vectores como categorÌas menos una. Por otra parte en la regresiÛn ordinal, las estimaciones no se pueden realizar con los modelos mencionados anteriormente, ya que esta tiene como particularidad el uso de la informaciÛn adicional suministrado por el orden de las categorÌas de la variable respuesta. 
+Se debe tener en cuenta que la regresi√≥n log√≠stica multinomial difiere de la regresi√≥n log√≠stica condicional y ordinal, pues en la regresi√≥n condicional las variables explicativas hacen referencia a atributos de las alternativas, variando sus valores para cada una de ellas, mientras que pueden o no variar para cada individuo, adem√°s solo se estima un vector de par√°metros, a diferencia de el caso multinomial en el que hay tantos vectores como categor√≠as menos una. Por otra parte en la regresi√≥n ordinal, las estimaciones no se pueden realizar con los modelos mencionados anteriormente, ya que esta tiene como particularidad el uso de la informaci√≥n adicional suministrado por el orden de las categor√≠as de la variable respuesta. 
 
-Ahora bien, la variable respuesta del modelo de regresiÛn logÌstica multinomial es una variable aleatoria con distribuciÛn multinomial, que se puede considerar como el n˙mero de Èxitos en cada una de las _g_ categorÌas que se presentan en _n_ ensayos independientes, y su funciÛn de distribuciÛn viene dada por (Feller, 1967).  
+Ahora bien, la variable respuesta del modelo de regresi√≥n log√≠stica multinomial es una variable aleatoria con distribuci√≥n multinomial, que se puede considerar como el n√∫mero de √©xitos en cada una de las _g_ categor√≠as que se presentan en _n_ ensayos independientes, y su funci?n de distribuci√≥n viene dada por (Feller, 1967).  
 
 $$P(Y_1=n_1,n_2,...,Y_g=n_g;n_1,p_1,p_2,...,p_g)=$$
 
 $$P\binom{n}{n_1n_2...n_g}p^{n_1}p^{n_2}...p^{n_g}$$
 
-donde $\sum_{j=1}^{g}n_j=n$ y $\sum_{j=1}^{g}p_j=1$. En esencia, la regresiÛn logÌstica multinomial estima las probabilidades  de esta distribuciÛn para cada individuo i, teniendo en cuenta un conjunto de variables explicativas (Mc Fadden, 1974). 
+donde $\sum_{j=1}^{g}n_j=n$ y $\sum_{j=1}^{g}p_j=1$. En esencia, la regresi√≥n log√≠stica multinomial estima las probabilidades  de esta distribuci√≥n para cada individuo _i_, teniendo en cuenta un conjunto de variables explicativas (Mc Fadden, 1974). 
 
 
-Para realizar las estimaciones de los par·metros en el modelo logÌstico multinomial, se  utiliza  la funciÛn canÛnica de enlace de la distribuciÛn multinomial a la familia exponencial, la cual es llamada transformaciÛn logit: 
+Para realizar las estimaciones de los par√°metros en el modelo log√≠stico multinomial, se  utiliza  la funcion can√≥nica de enlace de la distribuci√≥n multinomial a la familia exponencial, la cual es llamada transformaci√≥n logit: 
 
 
 $$EY_i=log(\frac{p_ij}{p_ig})$$
 
 
 
-Donde _ij_ es la probabilidad del individuo _i_ pertenezca a la categorÌa _j_, _ig_ p corresponde a la probabilidad del mismo individuo en la categorÌa _g_, la cual es definida como la categorÌa de referencia, de la variable con distribuciÛn multinomial _Y_.
+Donde _ij_ es la probabilidad del individuo _i_ pertenezca a la categor√≠a _j_, _ig_ p corresponde a la probabilidad del mismo individuo en la categor√≠a _g_, la cual es definida como la categor√≠a de referencia, de la variable con distribuci√≥n multinomial _Y_.
 
-Al  realizar una revisiÛn de la literatura sobre el enlace canÛnico multinomial, se encuentra poca informaciÛn de los antecedentes teÛricos de esta funciÛn, debido a que el modelo multinomial puede verse como una extensiÛn del modelo de regresiÛn logÌstico binomial, del cual muchos autores realizan el desarrollo formal y luego generalizan al caso politomico, mostrando directamente los resultados, como Hosmer y Lemeshow (2000), McCullagh y Nelder (1989), Jobson (1991) , Silva (1995) entre otros. Dado esta situaciÛn este trabajo pretende mostrar formalmente el planteamiento del modelo de regresiÛn logÌstico multinomial partiendo de dicha funciÛn, y las expresiones a travÈs de las cuales se estiman las probabilidades de los individuos. 
+Al  realizar una revisi√≥n de la literatura sobre el enlace can√≥nico multinomial, se encuentra poca informaci√≥n de los antecedentes te√≥ricos de esta funci√≥n, debido a que el modelo multinomial puede verse como una extensi√≥n del modelo de regresi√≥n log√≠stico binomial, del cual muchos autores realizan el desarrollo formal y luego generalizan al caso politomico, mostrando directamente los resultados, como Hosmer y Lemeshow (2000), McCullagh y Nelder (1989), Jobson (1991), Silva (1995) entre otros. Dado esta situaci√≥n este trabajo pretende mostrar formalmente el planteamiento del modelo de regresi√≥n log√≠stico multinomial partiendo de dicha funci√≥n, y las expresiones a trav√©s de las cuales se estiman las probabilidades de los individuos. 
 
-__La FunciÛn CanÛnica de Enlace__ 
+__La Funci√≥n Can√≥nica de Enlace__ 
 
-Como se mencionÛ anteriormente para la estimaciÛn de los par·metros del modelo se utiliza el hecho de que la distribuciÛn multinomial pertenece a la familia exponencial, lo cual se puede demostrar de forma sencilla. SupÛngase que ; _Fy_ y,$\theta$ es una funciÛn de distribuciÛn dependiendo de un ˙nico par·metro$\theta$. Se dice que pertenece a la familia exponencial si su funciÛn de densidad (o de masa, en el caso discreto) puede expresarse de la forma: 
+Como se menciona anteriormente para la estimaci√≥n de los par√°metros del modelo se utiliza el hecho de que la distribuci√≥n multinomial pertenece a la familia exponencial, lo cual se puede demostrar de forma sencilla. Supongase que ; _Fy_ y,$\theta$ es una funci√≥n de distribuci√≥n dependiendo de √∫nico par√°metro $\theta$. Se dice que pertenece a la familia exponencial si su funci√≥n de densidad (o de masa, en el caso discreto) puede expresarse de la forma: 
 
 
 CORREGIR ESTA FORMULA
 
 fy $$y;\theta=expa(\theta)b(Y)+C(\theta)+d(y)$$
 
-En el caso de distribuciones que dependen de k par·metros, por ejemplo $\theta$=$\theta_1$, $\theta_2$, ...,$\theta_k$ , ,..., k , la definiciÛn anterior se generaliza de la siguiente manera (Tusell, 2003):
+En el caso de distribuciones que dependen de k par√°metros, por ejemplo $\theta$=$\theta_1$, $\theta_2$, ...,$\theta_k$ , ,..., k , la definici√≥n anterior se generaliza de la siguiente manera (Tusell, 2003):
 
-formulasasasas..............................
+MAS FORMULAS
+
+
+
 
 
 
@@ -80,6 +83,6 @@ fitted(test1)
 ```
 En la salida anterior, lo primero que vemos es la llamada, esta es R, que nos recuerda qu√© modelo ejecutamos, qu√© opciones especificamos, etc.
 
-A continuaci√≥n vemos los residuos de desviaci√≥n, que son una medida del ajuste del modelo. Esta parte de la salida muestra la distribuci√≥n de los residuos de desviaci√≥n para los casos individuales utilizados en el modelo. A continuaci√≥n, discutimos c√≥mo usar los res√∫menes de la estad√?stica de desviaci√≥n para evaluar el ajuste del modelo.
+A continuaci√≥n vemos los residuos de desviaci√≥n, que son una medida del ajuste del modelo. Esta parte de la salida muestra la distribuci√≥n de los residuos de desviaci√≥n para los casos individuales utilizados en el modelo. A continuaci√≥n, discutimos c√≥mo usar los res√∫menes de la estad??stica de desviaci√≥n para evaluar el ajuste del modelo.
 
-La siguiente parte de la salida muestra los coeficientes, sus errores est√°ndar, la estad√?stica z (a veces denominada estad√?stica z de Wald) y los valores p asociados. Ambos Sexo y los dos niveles de edad son estad√?sticamente significativos. Los coeficientes de regresi√≥n log√?stica proporcionan el cambio en las probabilidades de registro del resultado para un aumento de una unidad en la variable predictiva.
+La siguiente parte de la salida muestra los coeficientes, sus errores est√°ndar, la estad??stica z (a veces denominada estad??stica z de Wald) y los valores p asociados. Ambos Sexo y los dos niveles de edad son estad??sticamente significativos. Los coeficientes de regresi√≥n log??stica proporcionan el cambio en las probabilidades de registro del resultado para un aumento de una unidad en la variable predictiva.
