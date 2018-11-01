@@ -1,6 +1,6 @@
 ---
-title: "RegresiÃ³n de LogÃ­stica"
-author: "Martin Blanco, Alicia Gimenez"
+title: "Regresión Logística Multinomial"
+author: "Martin Blanco, Alicia Giménez"
 date: "1 de noviembre de 2018"
 output: pdf_document
 ---
@@ -8,6 +8,48 @@ output: pdf_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+_Resumen: el presente trabajo presenta un esbozo de las características del Modelo de Regresión Logística Multinomial la cual generaliza el Método de Regresión Logística para problemas multiclase, es decir con más de dos resultados posibles discretos, prediciendo las probabilidades de los diferentes resultados posibles de una distribución categórica como variables independientes. Además de la presentación de definiciones y conceptos generales, se presenta un ejemplo de aplicación de la técnica mediante el programa de procesamiento estadístico Rstudio, la redacción del material se realizó con Rmarkdowm y para el desarrollo se utilizarán los paquetes ._
+
+__Introduccion al Modelo de Regresión Logística Multinomial__
+
+El modelo de regresión logística multinomial o también conocido como modelo con respuesta politómica, es una generalización del modelo de regresión logístico binomial (Mc Cullagh, 1989) en el que se desea estimar la probabilidad de que el individuo presente o no un evento específico, dado un conjunto de variables que explican características particulares de los individuos. En el caso del modelo multinomial, la variable endógena tiene más de dos alternativas a considerar como posibles respuestas, por lo cual la distribución de probabilidad adecuada para modelar este fenómeno es la distribución multinomial. 
+
+Se debe tener en cuenta que la regresión logística multinomial difiere de la regresión logística condicional y ordinal, pues en la regresión condicional las variables explicativas hacen referencia a atributos de las alternativas, variando sus valores para cada una de ellas, mientras que pueden o no variar para cada individuo, además solo se estima un vector de parámetros, a diferencia de el caso multinomial en el que hay tantos vectores como categorías menos una. Por otra parte en la regresión ordinal, las estimaciones no se pueden realizar con los modelos mencionados anteriormente, ya que esta tiene como particularidad el uso de la información adicional suministrado por el orden de las categorías de la variable respuesta. 
+
+Ahora bien, la variable respuesta del modelo de regresión logística multinomial es una variable aleatoria con distribución multinomial, que se puede considerar como el número de éxitos en cada una de las _g_ categorías que se presentan en _n_ ensayos independientes, y su función de distribución viene dada por (Feller, 1967).  
+
+$$P(Y_1=n_1,n_2,...,Y_g=n_g;n_1,p_1,p_2,...,p_g)=$$
+
+$$P\binom{n}{n_1n_2...n_g}p^{n_1}p^{n_2}...p^{n_g}$$
+
+donde $\sum_{j=1}^{g}n_j=n$ y $\sum_{j=1}^{g}p_j=1$. En esencia, la regresión logística multinomial estima las probabilidades  de esta distribución para cada individuo i, teniendo en cuenta un conjunto de variables explicativas (Mc Fadden, 1974). 
+
+
+Para realizar las estimaciones de los parámetros en el modelo logístico multinomial, se  utiliza  la función canónica de enlace de la distribución multinomial a la familia exponencial, la cual es llamada transformación logit: 
+
+
+$$EY_i=log(\frac{p_ij}{p_ig})$$
+
+
+
+Donde _ij_ es la probabilidad del individuo _i_ pertenezca a la categoría _j_, _ig_ p corresponde a la probabilidad del mismo individuo en la categoría _g_, la cual es definida como la categoría de referencia, de la variable con distribución multinomial _Y_.
+
+Al  realizar una revisión de la literatura sobre el enlace canónico multinomial, se encuentra poca información de los antecedentes teóricos de esta función, debido a que el modelo multinomial puede verse como una extensión del modelo de regresión logístico binomial, del cual muchos autores realizan el desarrollo formal y luego generalizan al caso politomico, mostrando directamente los resultados, como Hosmer y Lemeshow (2000), McCullagh y Nelder (1989), Jobson (1991) , Silva (1995) entre otros. Dado esta situación este trabajo pretende mostrar formalmente el planteamiento del modelo de regresión logístico multinomial partiendo de dicha función, y las expresiones a través de las cuales se estiman las probabilidades de los individuos. 
+
+__La Función Canónica de Enlace__ 
+
+Como se mencionó anteriormente para la estimación de los parámetros del modelo se utiliza el hecho de que la distribución multinomial pertenece a la familia exponencial, lo cual se puede demostrar de forma sencilla. Supóngase que ; _Fy_ y,$\theta$ es una función de distribución dependiendo de un único parámetro$\theta$. Se dice que pertenece a la familia exponencial si su función de densidad (o de masa, en el caso discreto) puede expresarse de la forma: 
+
+
+CORREGIR ESTA FORMULA
+
+fy $$y;\theta=expa(\theta)b(Y)+C(\theta)+d(y)$$
+
+En el caso de distribuciones que dependen de k parámetros, por ejemplo $\theta$=$\theta_1$, $\theta_2$, ...,$\theta_k$ , ,..., k , la definición anterior se generaliza de la siguiente manera (Tusell, 2003):
+
+formulasasasas..............................
+
 
 
 | _Sexo_| _Edad_| _No/Poco_        | _Importante_   | _Muy Importante_  | _Total_|
@@ -38,6 +80,6 @@ fitted(test1)
 ```
 En la salida anterior, lo primero que vemos es la llamada, esta es R, que nos recuerda quÃ© modelo ejecutamos, quÃ© opciones especificamos, etc.
 
-A continuaciÃ³n vemos los residuos de desviaciÃ³n, que son una medida del ajuste del modelo. Esta parte de la salida muestra la distribuciÃ³n de los residuos de desviaciÃ³n para los casos individuales utilizados en el modelo. A continuaciÃ³n, discutimos cÃ³mo usar los resÃºmenes de la estadÃ­stica de desviaciÃ³n para evaluar el ajuste del modelo.
+A continuaciÃ³n vemos los residuos de desviaciÃ³n, que son una medida del ajuste del modelo. Esta parte de la salida muestra la distribuciÃ³n de los residuos de desviaciÃ³n para los casos individuales utilizados en el modelo. A continuaciÃ³n, discutimos cÃ³mo usar los resÃºmenes de la estadÃ?stica de desviaciÃ³n para evaluar el ajuste del modelo.
 
-La siguiente parte de la salida muestra los coeficientes, sus errores estÃ¡ndar, la estadÃ­stica z (a veces denominada estadÃ­stica z de Wald) y los valores p asociados. Ambos Sexo y los dos niveles de edad son estadÃ­sticamente significativos. Los coeficientes de regresiÃ³n logÃ­stica proporcionan el cambio en las probabilidades de registro del resultado para un aumento de una unidad en la variable predictiva.
+La siguiente parte de la salida muestra los coeficientes, sus errores estÃ¡ndar, la estadÃ?stica z (a veces denominada estadÃ?stica z de Wald) y los valores p asociados. Ambos Sexo y los dos niveles de edad son estadÃ?sticamente significativos. Los coeficientes de regresiÃ³n logÃ?stica proporcionan el cambio en las probabilidades de registro del resultado para un aumento de una unidad en la variable predictiva.
