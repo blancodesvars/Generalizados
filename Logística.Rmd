@@ -42,18 +42,54 @@ __La Función Canónica de Enlace__
 Como se menciona anteriormente para la estimación de los parámetros del modelo se utiliza el hecho de que la distribución multinomial pertenece a la familia exponencial, lo cual se puede demostrar de forma sencilla. Supongase que ; _Fy_ y,$\theta$ es una función de distribución dependiendo de único parámetro $\theta$. Se dice que pertenece a la familia exponencial si su función de densidad (o de masa, en el caso discreto) puede expresarse de la forma: 
 
 
-CORREGIR ESTA FORMULA
+fy,$y;\theta=expa(\theta)b(Y)+C(\theta)+d(y)$
 
-fy $$y;\theta=expa(\theta)b(Y)+C(\theta)+d(y)$$
 
 En el caso de distribuciones que dependen de k parámetros, por ejemplo $\theta$=$\theta_1$, $\theta_2$, ...,$\theta_k$ , ,..., k , la definición anterior se generaliza de la siguiente manera (Tusell, 2003):
 
-MAS FORMULAS
+
+
+fy,$y;\theta=exp{\sum_{i=1}^{k}a_i(\theta)b(Y)+C(\theta)+d(y)}$
+
+
+Manipulando algebraicamente y utilizando algunas propiedades de las funciones logarítmicas y exponenciales se obtiene finalmente:
+
+$P=exp(\sum_{j=1}^{g-1}n_jlog(\frac{p_ij}{p_ig})+nlog(p_ig)+logA)$
+
+
+Lo cual puede ser expresado como una función de la  familia exponencial, mostrada en  donde:
+
+b_i(y)=n_j
+
+c($\theta$)=n.logP_ij
+
+a_i($\theta$)=log$(\frac{P_ij}{P_ig})$=1  
+
+EY_i
+
+
+Que es el parámetro natural de la familia y también llamada la función de enlace canónico. Así queda demostrado que la distribución Multinomial pertenece a la familia exponencial. 
+
+
+Ahora bien, empleando el método de estimación por máxima verosimilitud que no establece restricción alguna respecto de las características de las variables predictoras, se estiman los parámetros $\beta_ij$_ij  de la regresión lineal, la función de verosimilitud se define como sigue: 
 
 
 
 
+NO ME SALE LA PARTE DEL SUB-INDICE Y SUPERINDICE-------------------------
 
+
+
+L=$\Pi$p_i1^yi1,p_i2^yi2...,p_ig^ig
+
+
+Al aplicar el logaritmo y remplazando los resultados anteriores, maximizando la función de verosimilitud se obtiene un sistema de ecuaciones que requiere de los métodos numéricos para encontrar la mejor solución.
+
+
+Ln L=$\sum_{i=1}^{n}(\sum_{j=1}^{g-1} y_ij.ln \mathrm{e}^{x'i}\beta_j-\sum_{j=1}^{g-1} y_ij.ln(1+ \mathrm{e}^{x'i}\beta_j)$
+
+
+EJEMPLO DE APLICACION
 
 | _Sexo_| _Edad_| _No/Poco_        | _Importante_   | _Muy Importante_  | _Total_|
 |:-----:|:------:|:-------------:|:------------:|:---------------:|----:|:------:|
