@@ -95,6 +95,8 @@ EJEMPLO DE APLICACION
 yo creo que no hace falta la demostracion matricial, directo el ejercicio nomas ya
 
 
+me voyyyyyy
+
 
 | _Sexo_| _Edad_| _No/Poco_        | _Importante_   | _Muy Importante_  | _Total_|
 |:-----:|:------:|:-------------:|:------------:|:---------------:|----:|:------:|
