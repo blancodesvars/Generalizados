@@ -98,8 +98,9 @@ $Ln L=\sum_{i=1}^{n}(\sum_{j=1}^{g-1} y_ij.ln \mathrm{e}^{x'i}\beta_j-\sum_{j=1}
 
 EJEMPLO DE APLICACION
 
+\fbox{\begin{minipage}{48em}
 yo creo que no hace falta la demostracion matricial, directo el ejercicio nomas ya
-
+\end{minipage}}
 
 \pagebreak
 
