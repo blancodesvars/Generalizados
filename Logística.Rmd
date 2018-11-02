@@ -70,6 +70,7 @@ EY_i
 
 Que es el parámetro natural de la familia y también llamada la función de enlace canónico. Así queda demostrado que la distribución Multinomial pertenece a la familia exponencial. 
 
+hhh
 
 Ahora bien, empleando el método de estimación por máxima verosimilitud que no establece restricción alguna respecto de las características de las variables predictoras, se estiman los parámetros $\beta_ij$_ij  de la regresión lineal, la función de verosimilitud se define como sigue: 
 
