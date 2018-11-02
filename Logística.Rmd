@@ -10,7 +10,10 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-# __Ver fórmulas__
+\fbox{\begin{minipage}{48em}
+Ver fórmulas para asegurar que estén completas
+\end{minipage}}
+
 
 _Resumen: el presente trabajo presenta un esbozo de las características del Modelo de Regresión Logística Multinomial la cual generaliza el Método de Regresión Logística para problemas multiclase, es decir con más de dos resultados posibles discretos, prediciendo las probabilidades de los diferentes resultados posibles de una distribución categórica como variables independientes. Además de la presentación de definiciones y conceptos generales, se presenta un ejemplo de aplicación de la técnica mediante el programa de procesamiento estadístico Rstudio, la redacción del material se realizó con Rmarkdowm y para el desarrollo se utilizaron los paquetes ._
 
@@ -45,14 +48,14 @@ __La Función Canónica de Enlace__
 Como se menciona anteriormente para la estimación de los parámetros del modelo se utiliza el hecho de que la distribución multinomial pertenece a la familia exponencial, lo cual se puede demostrar de forma sencilla. Supongase que ; _Fy_ y,$\theta$ es una función de distribución dependiendo de único parámetro $\theta$. Se dice que pertenece a la familia exponencial si su función de densidad (o de masa, en el caso discreto) puede expresarse de la forma: 
 
 
-fy,$y;\theta=expa(\theta)b(Y)+C(\theta)+d(y)$
+$fy,y;\theta=expa(\theta)b(Y)+C(\theta)+d(y)$
 
 
-En el caso de distribuciones que dependen de k parámetros, por ejemplo $\theta$=$\theta_1$, $\theta_2$, ...,$\theta_k$ , ,..., k , la definición anterior se generaliza de la siguiente manera (Tusell, 2003):
+En el caso de distribuciones que dependen de k parámetros, por ejemplo $\theta=\theta_1,\theta_2,...,\theta_k,,...,k$ , la definición anterior se generaliza de la siguiente manera (Tusell, 2003):
 
 
 
-fy,$y;\theta=exp{\sum_{i=1}^{k}a_i(\theta)b(Y)+C(\theta)+d(y)}$
+$fy,y;\theta=exp{\sum_{i=1}^{k}a_i(\theta)b(Y)+C(\theta)+d(y)}$
 
 
 Manipulando algebraicamente y utilizando algunas propiedades de las funciones logarítmicas y exponenciales se obtiene finalmente:
@@ -68,7 +71,7 @@ $c(\theta)=n.logP_ij$
 
 $a_i(\theta)=log(\frac{P_ij}{P_ig})=1$  
 
-EY_i
+$EY_i$
 
 
 Que es el parámetro natural de la familia y también llamada la función de enlace canónico. Así queda demostrado que la distribución Multinomial pertenece a la familia exponencial. 
