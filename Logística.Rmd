@@ -9,6 +9,9 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+
+# __Ver fórmulas__
+
 _Resumen: el presente trabajo presenta un esbozo de las características del Modelo de Regresión Logística Multinomial la cual generaliza el Método de Regresión Logística para problemas multiclase, es decir con más de dos resultados posibles discretos, prediciendo las probabilidades de los diferentes resultados posibles de una distribución categórica como variables independientes. Además de la presentación de definiciones y conceptos generales, se presenta un ejemplo de aplicación de la técnica mediante el programa de procesamiento estadístico Rstudio, la redacción del material se realizó con Rmarkdowm y para el desarrollo se utilizaron los paquetes ._
 
 __Introducción al Modelo de Regresión Logística Multinomial__
@@ -59,11 +62,11 @@ $P=exp(\sum_{j=1}^{g-1}n_jlog(\frac{p_ij}{p_ig})+nlog(p_ig)+logA)$
 
 Lo cual puede ser expresado como una función de la  familia exponencial, mostrada en  donde:
 
-b_i(y)=n_j
+$b_i(y)=n_j$
 
-c($\theta$)=n.logP_ij
+$c(\theta)=n.logP_ij$
 
-a_i($\theta$)=log$(\frac{P_ij}{P_ig})$=1  
+$a_i(\theta)=log(\frac{P_ij}{P_ig})=1$  
 
 EY_i
 
@@ -72,22 +75,22 @@ Que es el parámetro natural de la familia y también llamada la función de enl
 
 
 
-Ahora bien, empleando el método de estimación por máxima verosimilitud que no establece restricción alguna respecto de las características de las variables predictoras, se estiman los parámetros $\beta_ij$_ij  de la regresión lineal, la función de verosimilitud se define como sigue: 
+Ahora bien, empleando el método de estimación por máxima verosimilitud que no establece restricción alguna respecto de las características de las variables predictoras, se estiman los parámetros $\beta_{ij}$  de la regresión lineal, la función de verosimilitud se define como sigue: 
 
 
 
 
-NO ME SALE LA PARTE DEL SUB-INDICE Y SUPERINDICE-------------------------
 
 
 
-L=$\Pi$p_i1^yi1,p_i2^yi2...,p_ig^ig
+
+$L=\Pi.p_i1^yi1,p_i2^yi2...,p_ig^ig$
 
 
 Al aplicar el logaritmo y remplazando los resultados anteriores, maximizando la función de verosimilitud se obtiene un sistema de ecuaciones que requiere de los métodos numéricos para encontrar la mejor solución.
 
 
-Ln L=$\sum_{i=1}^{n}(\sum_{j=1}^{g-1} y_ij.ln \mathrm{e}^{x'i}\beta_j-\sum_{j=1}^{g-1} y_ij.ln(1+ \mathrm{e}^{x'i}\beta_j)$
+$Ln L=\sum_{i=1}^{n}(\sum_{j=1}^{g-1} y_ij.ln \mathrm{e}^{x'i}\beta_j-\sum_{j=1}^{g-1} y_ij.ln(1+ \mathrm{e}^{x'i}\beta_j)$
 
 
 EJEMPLO DE APLICACION
@@ -95,8 +98,7 @@ EJEMPLO DE APLICACION
 yo creo que no hace falta la demostracion matricial, directo el ejercicio nomas ya
 
 
-me voyyyyyy
-
+\pagebreak
 
 | _Sexo_| _Edad_| _No/Poco_        | _Importante_   | _Muy Importante_  | _Total_|
 |:-----:|:------:|:-------------:|:------------:|:---------------:|----:|:------:|
